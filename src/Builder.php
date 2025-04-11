@@ -89,7 +89,7 @@ class Builder
      */
     protected Model $model;
 
-    protected Client $client;
+    protected $client;
 
     /**
      * 查询条件
