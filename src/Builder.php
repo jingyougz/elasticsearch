@@ -531,7 +531,7 @@ class Builder
 	        $cacheKey = sprintf("ES:CACHE:%s", md5(serialize($sql)));
 	        $redis = ApplicationContext::getContainer()->get(Redis::class);
 			$expire = $this->model->getCacheExpire();
-	        if ($expire > 0) {
+	        if ($expire > 0 && $method =='search') {
 		        $result = $redis->get($cacheKey);
 		        if (!empty($result)) {
 			        return json_decode($result, true);
@@ -539,7 +539,7 @@ class Builder
 	        }
 			
             $result = call([$client, $method], [$sql]);
-			if ($expire > 0) {
+	        if ($expire > 0 && $method =='search') {
 				$redis->setex($cacheKey, $expire, json_encode($result, JSON_UNESCAPED_UNICODE));
 			}
 
