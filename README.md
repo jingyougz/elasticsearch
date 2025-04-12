@@ -22,7 +22,7 @@ declare(strict_types=1);
 
 namespace App\EsModel;
 
-use Liguizhou\Elasticsearch\Model;
+use Jingyougz\Elasticsearch\Model;
 
 class OrderModel extends Model
 {
